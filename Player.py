@@ -1,9 +1,9 @@
 import pygame
-from Ball import Ball
+ 
 
-class PlayerBall(Ball):
+class Player(player):
 	def __init__(self, pos):
-		Ball.__init__(self, "images/Player/pballbu.png", [0,0], pos)
+		Player.__init__(self, "images/Player/pballbu.png", [0,0], pos)
 		self.upImages = [pygame.image.load("images/Player/pballru.png"),
 						 pygame.image.load("images/Player/pballgu.png"),
 						 pygame.image.load("images/Player/pballbu.png")]
