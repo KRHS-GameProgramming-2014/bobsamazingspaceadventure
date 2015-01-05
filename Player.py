@@ -1,9 +1,9 @@
 import pygame
  
 
-class Player(player):
+class PlayerShip(Ship):
 	def __init__(self, pos):
-		Player.__init__(self, "images/Player/pballbu.png", [0,0], pos)
+		Ship.__init__(self, "images/Player/pballbu.png", [0,0], pos)
 		self.upImages = [pygame.image.load("images/Player/pballru.png"),
 						 pygame.image.load("images/Player/pballgu.png"),
 						 pygame.image.load("images/Player/pballbu.png")]
