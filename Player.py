@@ -1,15 +1,12 @@
 import pygame
  
 
-class PlayerShip(Ship):
+class PlayerShip():
 	def __init__(self, pos):
-		Ship.__init__(self, "images/Player/pballbu.png", [0,0], pos)
+		#Ship.__init__(self, "images/Player/pballbu.png", [0,0], pos)
 		self.upImages = [pygame.image.load("images/Player/pballru.png"),
 						 pygame.image.load("images/Player/pballgu.png"),
 						 pygame.image.load("images/Player/pballbu.png")]
-		self.downImages = [pygame.image.load("images/Player/pballrd.png"),
-						   pygame.image.load("images/Player/pballgd.png"),
-						   pygame.image.load("images/Player/pballbd.png")]
 		self.leftImages = [pygame.image.load("images/Player/pballrl.png"),
 						   pygame.image.load("images/Player/pballgl.png"),
 						   pygame.image.load("images/Player/pballbl.png")]
@@ -28,21 +25,18 @@ class PlayerShip(Ship):
 		self.maxSpeed = 10
 			
 	def update(self, width, height):
-		Ball.update(self, width, height)
+		self.speed = [self.speedx, self.speedy]
+		self.move()
+		self.collideWall(width, height)
 		self.animate()
 		self.facingChanged = False
 		
 	def collideWall(self, width, height):
-		if not self.didBounceX:
-			#print "trying to hit Wall"
-			if self.rect.left < 0 or self.rect.right > width:
+		if self.rect.left < 0 or self.rect.right > width:
 				self.speedx = 0
-				self.didBounceX = True
 				#print "hit xWall"
-		if not self.didBounceY:
-			if self.rect.top < 0 or self.rect.bottom > height:
+		if self.rect.top < 0 or self.rect.bottom > height:
 				self.speedy = 0
-				self.didBounceY = True
 				#print "hit xWall"
 	
 	def animate(self):

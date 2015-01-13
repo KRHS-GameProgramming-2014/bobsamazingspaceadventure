@@ -3,8 +3,6 @@ from enemys import EnemyEasy
 from Player import PlayerShip
 from powerups import PowerUp
 from walls import Wall
-#from HUD import Text
-#from HUD import Score
 
 pygame.init()
 
@@ -13,15 +11,39 @@ clock = pygame.time.Clock()
 width = 800 
 height = 600
 size = width, height
-bg = pygame.image.load("Resources/Object/Background/Sure.png")
 
 bgColor = r,g,b = 200, 0, 200
 screen = pygame.display.set_mode(size)
-fullscreen = False 
-bgImage = pygame.image.load("Resources/Object/Background/Sure.png").convert()
-bgImage = pygame.transform.scale (bgImage, (800, 600))
-bgRect = bgImage.get_rect()
-player = Player([width/20, height/20])
 
-balls = []
-balls += [Ball("Resources/Object/Zombie/zombie.png", [4,5], [250, 275])]
+player = PlayerShip([width/2, height/2])
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT: sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w or event.key == pygame.K_UP:
+                player.go("up")
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                player.go("right")
+            if event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                player.go("down")
+            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                player.go("left")
+            
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_w or event.key == pygame.K_UP:
+                player.go("stop up")
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                player.go("stop right")
+            if event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                player.go("stop down")
+            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                player.go("stop left")
+
+	player.update(width, height)
+
+	bgColor = r,g,b
+    screen.fill(bgColor)
+    screen.blit(player.image, player.rect)
+    pygame.display.flip()
+    clock.tick(45)
