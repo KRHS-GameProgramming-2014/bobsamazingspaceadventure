@@ -16,6 +16,7 @@ bgColor = r,g,b = 200, 0, 200
 screen = pygame.display.set_mode(size)
 
 player = PlayerShip([width/2, height/2])
+powerups = []
 
 while True:
     for event in pygame.event.get():
@@ -40,10 +41,17 @@ while True:
             if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 player.go("stop left")
 
-	player.update(width, height)
+	if random.randint(0,10*60) == 0:
+		powerups+=[PowerUp("burst shot", [0, 5], [random.randint(0, width),0])]
 
-	bgColor = r,g,b
+    player.update(width, height)
+    for powerup in powerups:
+		powerup.update(width, height)
+
+    bgColor = r,g,b
     screen.fill(bgColor)
     screen.blit(player.image, player.rect)
+    for powerup in powerups:
+		screen.blit(powerup.image, powerup.rect)
     pygame.display.flip()
     clock.tick(45)

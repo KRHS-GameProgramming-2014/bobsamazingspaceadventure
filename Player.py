@@ -4,11 +4,12 @@ import pygame
 class PlayerShip():
     def __init__(self, pos):
         #Ship.__init__(self, "images/Player/pballbu.png", [0,0], pos)
-        self.upImages = [pygame.image.load("basic spaceship .png"),]
+        
+        self.upImages = [pygame.image.load("Art/Bg/playership.png"),]
                         
-        self.leftImages = [pygame.image.load("basic spaceship .png"),]
+        self.leftImages = [pygame.image.load("Art/Bg/playership.png"),]
                     
-        self.rightImages = [pygame.image.load("basic spaceship .png"),]
+        self.rightImages = [pygame.image.load("Art/Bg/playership.png"),]
                            
         self.facing = "up"
         self.changed = False
@@ -18,8 +19,13 @@ class PlayerShip():
         self.waitCount = 0
         self.maxWait = 60*.25
         self.image = self.images[self.frame]
-        self.rect = self.image.get_rect(center = self.rect.center)
+        self.rect = self.image.get_rect()
+        self.speedx = 0
+        self.speedy = 0
         self.maxSpeed = 10
+        
+    def move(self):
+        self.rect = self.rect.move(self.speed)
             
     def update(self, width, height):
         self.speed = [self.speedx, self.speedy]
