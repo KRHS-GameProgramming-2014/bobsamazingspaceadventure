@@ -12,7 +12,7 @@ width = 800
 height = 600
 size = width, height
 
-bgColor = r,g,b = 200, 0, 200
+bgColor = r,g,b = 0, 0, 0
 screen = pygame.display.set_mode(size)
 
 player = PlayerShip([width/2, height/2])
@@ -40,9 +40,9 @@ while True:
             if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 player.go("stop left")
 
-	player.update(width, height)
+    player.update(width, height)
 
-	bgColor = r,g,b
+    bgColor = r,g,b
     screen.fill(bgColor)
     screen.blit(player.image, player.rect)
     pygame.display.flip()
