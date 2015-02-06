@@ -30,7 +30,13 @@ while True:
                 player.go("down")
             if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 player.go("left")
-            
+                 
+                 
+                 
+                 
+                 
+                 
+                 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w or event.key == pygame.K_UP:
                 player.go("stop up")
