@@ -3,6 +3,7 @@ from enemys import EnemyEasy
 from Player import PlayerShip
 from powerups import PowerUp
 from walls import Wall
+from walls import Walls
 
 pygame.init()
 
@@ -18,7 +19,7 @@ screen = pygame.display.set_mode(size)
 player = PlayerShip([width/2, height/2])
 powerups = []
 
-walls =  
+theWalls =  Walls(5, size)
 
 while True:
     for event in pygame.event.get():
@@ -48,18 +49,24 @@ while True:
                 player.go("stop down")
             if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 player.go("stop left")
+                
+                
 
-	if random.randint(0,10*60) == 0:
-		powerups+=[PowerUp("burst shot", [0, 5], [random.randint(0, width),0])]
+    #if random.randint(0,10*60) == 0:
+    #    powerups+=[PowerUp("burst shot", [0, 5], [random.randint(0, width),0])]
+    
+    theWalls.update()
 
     player.update(width, height)
     for powerup in powerups:
-		powerup.update(width, height)
+        powerup.update(width, height)
 
     bgColor = r,g,b
     screen.fill(bgColor)
     screen.blit(player.image, player.rect)
     for powerup in powerups:
-		screen.blit(powerup.image, powerup.rect)
+        screen.blit(powerup.image, powerup.rect)
+    for wall in theWalls.walls:
+        screen.blit(wall.image, wall.rect)
     pygame.display.flip()
     clock.tick(45)
