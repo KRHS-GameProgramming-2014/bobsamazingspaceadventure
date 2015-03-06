@@ -59,7 +59,8 @@ while True:
 
     player.update(width, height)
     for powerup in powerups:
-        powerup.update(width, height)
+        powerup.update(width, height)+-------------------------------------------------------
+		
 
     bgColor = r,g,b
     screen.fill(bgColor)

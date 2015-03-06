@@ -29,6 +29,7 @@ class Wall():
         pos[1] = height * 100
         self.rect.bottomright = pos
     
+    
     def placeLeft(self, height):
         pos = [0,0]
         pos[0] = 0
@@ -41,6 +42,11 @@ class Wall():
     def update(self):
         self.speed = [self.speedx, self.speedy]
         self.move()
+        self.checkEdge()
+    
+    def checkEdge(self):
+        if self.rect.top > self.screenSize[1]:
+            self.living = False
 
 
 class Walls():
@@ -63,17 +69,20 @@ class Walls():
             aWallL = "Art/Bg/" + str(random.randint(2,20))+" WALL.PNG"
             count += 1
             if count >= 10:
-				sys.exit()
+                sys.exit()
             print "trying", aWallL
             leftImages = [pygame.image.load(aWallL)]
             leftRects = [leftImages[0].get_rect()]
             leftWidths = [leftRects[0].width]
         self.walls += [Wall(rightImages[0], "right", 0, self.screenSize, self.speed), 
                        Wall(leftImages[0], "left", 0, self.screenSize, self.speed)]
+    
         
     def update(self):
         if self.walls[-1].rect.top > 100:
             self.makeWalls()
         for wall in self.walls:
             wall.update()
-        
+            if not wall.living:
+                self.walls.remove(wall)
+        print len(self.walls)
