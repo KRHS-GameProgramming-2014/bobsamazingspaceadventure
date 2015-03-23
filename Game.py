@@ -1,9 +1,9 @@
 import pygame, sys, random
-from enemys import EnemyEasy
 from Player import PlayerShip
-from powerups import PowerUp
 from walls import Wall
 from walls import Walls
+
+#test
 
 pygame.init()
 
@@ -59,11 +59,12 @@ while True:
 
     player.update(width, height)
     for powerup in powerups:
-        powerup.update(width, height)+-------------------------------------------------------
+        powerup.update(width, height)
 		
 
     bgColor = r,g,b
     screen.fill(bgColor)
+    
     screen.blit(player.image, player.rect)
     for powerup in powerups:
         screen.blit(powerup.image, powerup.rect)
