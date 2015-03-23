@@ -1,0 +1,1 @@
+Theirs a spaceship that is tying to shoot enemy aliens. And also at the same time avoid objects that could damage the spaceship.You get point for how many aliens kill.
